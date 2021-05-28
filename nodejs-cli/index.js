@@ -1,7 +1,7 @@
 const path = require('path')
 const fs = require('fs')
-let src = process.argv[2];
-let opt = process.argv[3];
+let src = process.argv[2]||'./';
+let opt = process.argv[3]||'find-big';
 let src2 = process.argv0;
 // debugger
 // console.log(src, opt, src2, 'params');
@@ -52,6 +52,7 @@ if (opt === 'del') {
             ret.push(i.path + '-' + i.file + '-' + i.size + '-'+ i.mSize + 'MB')
         })
         console.log(ret);
-        fs.writeFileSync('result.txt', ret.join('\n'))
+        // fs.writeFileSync('result.txt', ret.join('\n'))
+        fs.writeFileSync('result.json', JSON.stringify(res, null, 2));
     }).catch(console.error);
 }
